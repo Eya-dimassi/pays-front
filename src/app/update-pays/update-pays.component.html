@@ -1,0 +1,36 @@
+<div class="container">
+    <div>
+    <h2>Modifier un Pays :</h2>
+    </div>
+    <form >
+        <div class="col-sm-2 col-md-2 col-lg-2">
+    <label  >ID Pays</label>
+    <input readonly type="text" [(ngModel)]="currentPays.idPays"
+    name="idPays" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4" >
+    <label >Nom Pays</label>
+    <input type="text"[(ngModel)]= "currentPays.nomPays"
+    name="nomPays" class="form-control">
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+    <label >Population</label>
+    <input type="number" [(ngModel)]= "currentPays.population"
+    name="population" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4" >
+        <label >Continent</label>
+        <input type="text"[(ngModel)]= "currentPays.continent"
+        name="continent" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <label >Date d'indépendance</label>
+<input type="date" [ngModel]="currentPays.independenceDate | date: 'yyyy-MM-dd'"
+(ngModelChange)=" currentPays.independenceDate= $event" name="independenceDate"
+ class="form-control">
+</div>
+<div class="mt-2">
+<button type="submit" (click)="updatePays()" class="btn btn-success">Modifer</button>
+</div>
+</form>
+</div>

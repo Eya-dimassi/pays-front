@@ -1,0 +1,35 @@
+<div class="container">
+    <div>
+    <h2>Ajouter un Pays :</h2>
+    </div>
+    <form >
+        <div class="col-sm-2 col-md-2 col-lg-2">
+        <label >ID Pays</label>
+        <input type="text" [(ngModel)]="newPays.idPays"
+        name="idPays" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4" >
+        <label >Nom du pays </label>
+        <input type="text"[(ngModel)]= "newPays.nomPays"
+        name="nomPays" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+        <label >Population du Pays</label>
+        <input type="number" [(ngModel)]= "newPays.population"
+        name="population" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label >Continent</label>
+            <input type="text" [(ngModel)]="newPays.continent"
+            name="continent" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+        <label >Date de l'indépendance</label>
+        <input type="date" [(ngModel)]= "newPays.independenceDate"
+        name="independenceDate" class="form-control">
+        </div>
+        <div class="mt-2">
+        <button type="submit" (click)="addPays()"class="btn btn-success">Ajouter</button>
+        </div>
+        </form>
+        </div>

@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Population</th>
+                        <th>Continent</th>
+                        <th>Date d'indépendance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pays of pays">
+                        <td>{{pays.idPays}}</td>
+                        <td>{{pays.nomPays}}</td>
+                        <td>{{pays.population}}</td>
+                        <td>{{pays.continent}}</td>
+                        <td>{{pays.independenceDate | date:'dd/MM/yyyy'}}</td>
+                        <td><a class="btn btn-danger" (click)="supprimerPays(pays)">Supprimer</a></td>
+                        <td><a class="btn btn-success" [routerLink]="['/updatePays',pays.idPays]">Modifier</a></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
