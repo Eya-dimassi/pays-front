@@ -19,7 +19,7 @@
     name="population" class="form-control">
     </div>
     <div class="col-sm-4 col-md-4 col-lg-4" >
-        <label >Continent</label>
+        <label >Continent</label><
         <input type="text"[(ngModel)]= "currentPays.continent"
         name="continent" class="form-control">
     </div>
@@ -29,6 +29,15 @@
 (ngModelChange)=" currentPays.independenceDate= $event" name="independenceDate"
  class="form-control">
 </div>
+<div class="col-sm-4 col-md-4 col-lg-4">
+    <select class="form-control form-control-lg" id="idClass" name="idClass"
+    [(ngModel)]="updateClassId">
+    <option *ngFor="let clas of classifications" [value]="clas.idClass" >
+    {{clas.nomClass}}
+    </option>
+    </select>
+    </div>
+    
 <div class="mt-2">
 <button type="submit" (click)="updatePays()" class="btn btn-success">Modifer</button>
 </div>

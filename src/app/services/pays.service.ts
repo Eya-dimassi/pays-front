@@ -1,17 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Pays } from '../model/pays.model';
+import { Classification } from '../model/classification.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaysService {
   pays :Pays[];
+  classifications:Classification[];
 
   constructor() {
+    this.classifications=[
+      {idClass:1,nomClass:"Developed"},
+      {idClass:2,nomClass:"Developing"},
+      {idClass:3,nomClass:"Emerging"}
+    ];
     this.pays =[ 
-      {idPays:1 , nomPays:"Tunisia", population:12.36 ,continent:"Africa",independenceDate:new Date("1956-03-20")},
-      {idPays:2 , nomPays:"France", population:67.97 ,continent:"Europe",independenceDate:new Date("1789-07-14")},
-      {idPays:3 , nomPays:"Algeria", population:44.9 ,continent:"Africa",independenceDate:new Date("1962-07-05")}
+      {idPays:1 , nomPays:"Tunisia", population:12.36 ,continent:"Africa",independenceDate:new Date("1956-03-20"),classification:{idClass:2,nomClass:"Developing"}},
+      {idPays:2 , nomPays:"France", population:67.97 ,continent:"Europe",independenceDate:new Date("1789-07-14"), classification:{idClass:1,nomClass:"Developed"}},
+      {idPays:3 , nomPays:"Algeria", population:44.9 ,continent:"Africa",independenceDate:new Date("1962-07-05"),classification:{idClass:2,nomClass:"Developing"}}
       
      ]
    }
@@ -55,6 +62,12 @@ this.ajouterPays(p);
 this.trierPays();
 
 }
+listeClassification():Classification[] {
+  return this.classifications;
+  }
+consulterClassification(id:number): Classification{
+    return this.classifications.find(clas => clas.idClass == id)!;
+    }
 
 
 

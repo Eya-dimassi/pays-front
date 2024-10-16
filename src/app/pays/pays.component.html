@@ -9,6 +9,7 @@
                         <th>Population</th>
                         <th>Continent</th>
                         <th>Date d'indépendance</th>
+                        <th>Classification</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -18,6 +19,7 @@
                         <td>{{pays.population}}</td>
                         <td>{{pays.continent}}</td>
                         <td>{{pays.independenceDate | date:'dd/MM/yyyy'}}</td>
+                        <td>{{pays.classification.nomClass}}</td>
                         <td><a class="btn btn-danger" (click)="supprimerPays(pays)">Supprimer</a></td>
                         <td><a class="btn btn-success" [routerLink]="['/updatePays',pays.idPays]">Modifier</a></td>
 
