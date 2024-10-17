@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
+        <label>Classification </label>
+        <select class="form-control form-control-lg" id="idClass" name="idClass"
+        [(ngModel)]="IdClass" (change)="onChange()">
+        <option *ngFor="let classification of classifications" value="{{classification.idClass}}">
+        {{classification.nomClass}}
+        </option>
+        </select>
+</div>
+    
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Population</th>
+                        <th>Continent</th>
+                        <th>Date d'indépendance</th>
+                        <th>Classification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pays of pays">
+                        <td>{{pays.idPays}}</td>
+                        <td>{{pays.nomPays}}</td>
+                        <td>{{pays.population}}</td>
+                        <td>{{pays.continent}}</td>
+                        <td>{{pays.independenceDate | date:'dd/MM/yyyy'}}</td>
+                        <td>{{pays.classification.nomClass}}</td>
+                        <td><a class="btn btn-danger" (click)="supprimerPays(pays)">Supprimer</a></td>
+                        <td><a class="btn btn-success" [routerLink]="['/updatePays',pays.idPays]">Modifier</a></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

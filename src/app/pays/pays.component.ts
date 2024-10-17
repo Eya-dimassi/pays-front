@@ -8,9 +8,9 @@ import { PaysService } from '../services/pays.service';
   styleUrl: './pays.component.css'
 })
 export class PaysComponent implements OnInit {
-  pays:Pays[];
+  pays:Pays[]=[];
   constructor(private paysService:PaysService){
-     this.pays =paysService.listePays();
+     
   }
   ngOnInit(): void {
     

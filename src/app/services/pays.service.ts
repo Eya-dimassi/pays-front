@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Pays } from '../model/pays.model';
 import { Classification } from '../model/classification.model';
-
+import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class PaysService {
   pays :Pays[];
   classifications:Classification[];
+  paysRecherche!:Pays[];
+
+  classification = new Classification();
 
   constructor() {
     this.classifications=[
@@ -22,8 +25,8 @@ export class PaysService {
       
      ]
    }
-   listePays(){
-    return this.pays;
+   listePays():Observable< Pays[]>{
+    return of (this.pays);
 
    }
    ajouterPays(p:Pays){
@@ -68,10 +71,16 @@ listeClassification():Classification[] {
 consulterClassification(id:number): Classification{
     return this.classifications.find(clas => clas.idClass == id)!;
     }
-
-
-
-
-
+rechercherParClassification(idClass: number): Pays[]{
+      this.paysRecherche = [];
+      this.pays.forEach((cur, index) => {
+      if(idClass == cur.classification.idClass) {
+      console.log("cur "+cur);
+      this.paysRecherche.push(cur);
+      }
+      });
+      return this.paysRecherche;
+}
+      
 
 }

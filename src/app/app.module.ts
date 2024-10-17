@@ -7,13 +7,21 @@ import { PaysComponent } from './pays/pays.component';
 import { AddPaysComponent } from './add-pays/add-pays.component';
 import { FormsModule } from '@angular/forms';
 import { UpdatePaysComponent } from './update-pays/update-pays.component';
+import { RechercheParClassificationComponent } from './recherche-par-classification/recherche-par-classification.component';
+import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
+import { SearchFilterPipe } from './search-filter.pipe';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PaysComponent,
     AddPaysComponent,
-    UpdatePaysComponent
+    UpdatePaysComponent,
+    RechercheParClassificationComponent,
+    RechercheParNomComponent,
+    SearchFilterPipe,
+
   ],
   imports: [
     BrowserModule,
