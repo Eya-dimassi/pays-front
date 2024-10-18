@@ -12,11 +12,7 @@ export class RechercheParNomComponent {
   searchTerm!: string;
   constructor(private paysService: PaysService){}
 ngOnInit(): void {
-
-  this.paysService.listePays().subscribe((p: Pays[]) => {
-  console.log(p);
-   this.pays = p;
-});
+this.pays=this.paysService.listePays();
 }
 onKeyUp(filterText : string){
 this.pays= this.allPays.filter(item =>

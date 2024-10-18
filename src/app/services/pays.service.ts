@@ -25,8 +25,8 @@ export class PaysService {
       
      ]
    }
-   listePays():Observable< Pays[]>{
-    return of (this.pays);
+   listePays(){
+    return this.pays;
 
    }
    ajouterPays(p:Pays){
@@ -82,5 +82,4 @@ rechercherParClassification(idClass: number): Pays[]{
       return this.paysRecherche;
 }
       
-
 }

@@ -10,7 +10,7 @@ import { PaysService } from '../services/pays.service';
 export class PaysComponent implements OnInit {
   pays:Pays[]=[];
   constructor(private paysService:PaysService){
-     
+   this.pays=paysService.listePays();  
   }
   ngOnInit(): void {
     
