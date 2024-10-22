@@ -10,6 +10,8 @@ import { UpdatePaysComponent } from './update-pays/update-pays.component';
 import { RechercheParClassificationComponent } from './recherche-par-classification/recherche-par-classification.component';
 import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
 import { SearchFilterPipe } from './search-filter.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { SearchFilterPipe } from './search-filter.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     provideClientHydration()

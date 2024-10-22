@@ -7,5 +7,6 @@ export class Pays{
     continent!:string;
     independenceDate!: Date;
     classification!:Classification;
+    email!:string;
 
 }

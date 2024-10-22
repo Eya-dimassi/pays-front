@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pays } from '../model/pays.model';
 import { PaysService } from '../services/pays.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-pays',

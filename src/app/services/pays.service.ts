@@ -19,9 +19,9 @@ export class PaysService {
       {idClass:3,nomClass:"Emerging"}
     ];
     this.pays =[ 
-      {idPays:1 , nomPays:"Tunisia", population:12.36 ,continent:"Africa",independenceDate:new Date("1956-03-20"),classification:{idClass:2,nomClass:"Developing"}},
-      {idPays:2 , nomPays:"France", population:67.97 ,continent:"Europe",independenceDate:new Date("1789-07-14"), classification:{idClass:1,nomClass:"Developed"}},
-      {idPays:3 , nomPays:"Algeria", population:44.9 ,continent:"Africa",independenceDate:new Date("1962-07-05"),classification:{idClass:2,nomClass:"Developing"}}
+      {idPays:1 , nomPays:"Tunisia", population:12.36 ,continent:"Africa",independenceDate:new Date("1956-03-20"),classification:{idClass:2,nomClass:"Developing"},email:"info@tunisia.com"},
+      {idPays:2 , nomPays:"France", population:67.97 ,continent:"Europe",independenceDate:new Date("1789-07-14"), classification:{idClass:1,nomClass:"Developed"},email:"info@france.com"},
+      {idPays:3 , nomPays:"Algeria", population:44.9 ,continent:"Africa",independenceDate:new Date("1962-07-05"),classification:{idClass:2,nomClass:"Developing"},email:"info@algeria.com"}
       
      ]
    }

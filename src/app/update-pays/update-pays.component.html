@@ -19,7 +19,7 @@
     name="population" class="form-control">
     </div>
     <div class="col-sm-4 col-md-4 col-lg-4" >
-        <label >Continent</label><
+        <label >Continent</label>
         <input type="text"[(ngModel)]= "currentPays.continent"
         name="continent" class="form-control">
     </div>
@@ -29,6 +29,13 @@
 (ngModelChange)=" currentPays.independenceDate= $event" name="independenceDate"
  class="form-control">
 </div>
+<div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" [(ngModel)]="pays.email" name="email" required email>
+    <div *ngIf="paysForm.submitted && !paysForm.controls['email'].valid">
+      Email is required and must be a valid email format.
+    </div>
+  </div>
 <div class="col-sm-4 col-md-4 col-lg-4">
     <select class="form-control form-control-lg" id="idClass" name="idClass"
     [(ngModel)]="updateClassId">
