@@ -27,7 +27,9 @@
         <label >Date de l'indépendance</label>
         <input type="date" [(ngModel)]= "newPays.independenceDate"
         name="independenceDate" class="form-control">
-        </div>
+    </div>
+
+    
         <div class="col-sm-4 col-md-4 col-lg-4">
             <label>Classification</label>
             <select class="form-control form-control-lg" id="idClass" name="idClass"
@@ -37,8 +39,22 @@
             </option>
             </select>
         </div>
+        <form [formGroup]="myForm" (ngSubmit)="addPays()">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" name="email" class="form-control" formControlName="email">
+            <span *ngIf="myForm.controls['email'].hasError('required')&&  myForm.controls['email'].touched" class="text-danger">
+                email est obligatoire
+            </span>
+            <span *ngIf="myForm.controls['email'].hasError('email')&&  myForm.controls['email'].touched" class="text-danger">
+                email non valide
+            </span>
+            <span *ngIf="myForm.controls['email'].hasError('minlength')&&  myForm.controls['email'].touched" class="text-danger">
+                email doit etre au mois 10 caractéres
+            </span>
+          </div>
         <div class="mt-2">
         <button type="submit" (click)="addPays()"class="btn btn-success">Ajouter</button>
-        </div>
+        </div></form>
         </form>
         </div>

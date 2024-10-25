@@ -29,13 +29,7 @@
 (ngModelChange)=" currentPays.independenceDate= $event" name="independenceDate"
  class="form-control">
 </div>
-<div>
-    <label for="email">Email:</label>
-    <input type="email" id="email" [(ngModel)]="pays.email" name="email" required email>
-    <div *ngIf="paysForm.submitted && !paysForm.controls['email'].valid">
-      Email is required and must be a valid email format.
-    </div>
-  </div>
+
 <div class="col-sm-4 col-md-4 col-lg-4">
     <select class="form-control form-control-lg" id="idClass" name="idClass"
     [(ngModel)]="updateClassId">
@@ -43,10 +37,23 @@
     {{clas.nomClass}}
     </option>
     </select>
-    </div>
-    
+</div>
+<form [formGroup]="myForm" (ngSubmit)="updatePays()">
+<div class="form-group">
+    <label for="email">Email:</label>
+    <input type="text" name="email" class="form-control" formControlName="email">
+    <span *ngIf="myForm.controls['email'].hasError('required')&&  myForm.controls['email'].touched" class="text-danger">
+        email est obligatoire
+    </span>
+    <span *ngIf="myForm.controls['email'].hasError('email')&&  myForm.controls['email'].touched" class="text-danger">
+        email non valide
+    </span>
+    <span *ngIf="myForm.controls['email'].hasError('minlength')&&  myForm.controls['email'].touched" class="text-danger">
+        email doit etre au mois 10 caractéres
+    </span>
+  </div>
 <div class="mt-2">
 <button type="submit" (click)="updatePays()" class="btn btn-success">Modifer</button>
-</div>
+</div></form>
 </form>
 </div>
