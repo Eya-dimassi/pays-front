@@ -8,7 +8,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-update-pays',
   templateUrl: './update-pays.component.html',
-  styles: ``
 })
 export class UpdatePaysComponent implements OnInit{
   currentPays = new Pays();
@@ -24,10 +23,20 @@ ngOnInit():void {
 
 this.currentPays = this.paysService.consulterPays(this.activatedRoute.snapshot. params['id']);
 this.updateClassId=this.currentPays.classification.idClass;
-  this.myForm=this.formBuilder.group({
-    email: [this.currentPays.email, [Validators.required, Validators.email,Validators.minLength(10)]],
+this.myForm=this.formBuilder.group({
+  email: ['', [Validators.required, Validators.email,Validators.minLength(5)]],
+  idPays:['', [Validators.required]],
+  nomPays:['', [Validators.required]],
+  population:['', [Validators.required]],
+  continent:['', [Validators.required]],
+  independenceDate:['', [Validators.required]],
+  classifications:['', [Validators.required]],
 
-  })
+})
+
+
+
+
 
 }
 updatePays()

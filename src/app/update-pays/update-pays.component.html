@@ -2,44 +2,59 @@
     <div>
     <h2>Modifier un Pays :</h2>
     </div>
-    <form >
-        <div class="col-sm-2 col-md-2 col-lg-2">
+    <form [formGroup]="myForm">
+    
+    <div class="col-sm-2 col-md-2 col-lg-2">
     <label  >ID Pays</label>
-    <input readonly type="text" [(ngModel)]="currentPays.idPays"
-    name="idPays" class="form-control">
+    <input type="text" [(ngModel)]="currentPays.idPays" formControlName="idPays" name="idPays" class="form-control">
     </div>
+    <span *ngIf="myForm.controls['idPays'].hasError('required')&&  myForm.controls['idPays'].touched"class="text-danger">
+        ID pays est obligatoire
+    </span>
+
+
     <div class="col-sm-4 col-md-4 col-lg-4" >
     <label >Nom Pays</label>
-    <input type="text"[(ngModel)]= "currentPays.nomPays"
-    name="nomPays" class="form-control">
+    <input type="text"[(ngModel)]= "currentPays.nomPays" formControlName="nomPays" name="nomPays" class="form-control">
     </div>
+    <span *ngIf="myForm.controls['nomPays'].hasError('required')&&  myForm.controls['nomPays'].touched"class="text-danger">
+        le nom du pays est obligatoire
+    </span>
+    
+    
     <div class="col-sm-2 col-md-2 col-lg-2">
     <label >Population</label>
-    <input type="number" [(ngModel)]= "currentPays.population"
-    name="population" class="form-control">
+    <input type="number" [(ngModel)]= "currentPays.population" formControlName="population" name="population" class="form-control">
     </div>
+    <span *ngIf="myForm.controls['population'].hasError('required')&&  myForm.controls['population'].touched"class="text-danger">
+        population est obligatoire
+    </span>
+    
     <div class="col-sm-4 col-md-4 col-lg-4" >
         <label >Continent</label>
-        <input type="text"[(ngModel)]= "currentPays.continent"
-        name="continent" class="form-control">
+        <input type="text"[(ngModel)]= "currentPays.continent" formControlName="continent" name="continent" class="form-control">
     </div>
+    <span *ngIf="myForm.controls['continent'].hasError('required')&&  myForm.controls['continent'].touched"class="text-danger">
+        continent est obligatoire
+    </span>
+    
+    
     <div class="col-sm-4 col-md-4 col-lg-4">
         <label >Date d'indépendance</label>
-<input type="date" [ngModel]="currentPays.independenceDate | date: 'yyyy-MM-dd'"
-(ngModelChange)=" currentPays.independenceDate= $event" name="independenceDate"
- class="form-control">
-</div>
+        <input type="date" formControlName="independenceDate" [ngModel]="currentPays.independenceDate | date: 'yyyy-MM-dd'" (ngModelChange)=" currentPays.independenceDate= $event" name="independenceDate" class="form-control">
+    </div>
 
-<div class="col-sm-4 col-md-4 col-lg-4">
-    <select class="form-control form-control-lg" id="idClass" name="idClass"
-    [(ngModel)]="updateClassId">
-    <option *ngFor="let clas of classifications" [value]="clas.idClass" >
-    {{clas.nomClass}}
-    </option>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+    <select class="form-control form-control-lg" id="idClass" formControlName="idClass" name="idClass" [(ngModel)]="updateClassId">
+    <option *ngFor="let clas of classifications" [value]="clas.idClass" >{{clas.nomClass}}</option>
     </select>
-</div>
-<form [formGroup]="myForm" (ngSubmit)="updatePays()">
-<div class="form-group">
+    </div>
+    <span *ngIf="myForm.controls['independenceDate'].hasError('required')&&  myForm.controls['independenceDate'].touched"class="text-danger">
+    le date d'independance est obligatoire
+    </span>
+
+
+    <div class="form-group">
     <label for="email">Email:</label>
     <input type="text" name="email" class="form-control" formControlName="email">
     <span *ngIf="myForm.controls['email'].hasError('required')&&  myForm.controls['email'].touched" class="text-danger">
@@ -52,8 +67,9 @@
         email doit etre au mois 10 caractéres
     </span>
   </div>
-<div class="mt-2">
-<button type="submit" (click)="updatePays()" class="btn btn-success">Modifer</button>
-</div></form>
-</form>
+
+    <div class="mt-2">
+   <button type="submit" [disabled]="myForm.invalid"  (click)="updatePays()" class="btn btn-success">Modifer</button>
+    </div>
+    </form>
 </div>

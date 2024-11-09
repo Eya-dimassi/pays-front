@@ -1,60 +1,80 @@
 <div class="container">
     <div>
-    <h2>Ajouter un Pays :</h2>
+        <h2>Ajouter un Pays :</h2>
     </div>
-    <form >
+    <form [formGroup]="myForm">
         <div class="col-sm-2 col-md-2 col-lg-2">
-        <label >ID Pays</label>
-        <input type="text" [(ngModel)]="newPays.idPays"
-        name="idPays" class="form-control">
+            <label>ID Pays</label>
+            <input type="text" formControlName="idPays" [(ngModel)]="newPays.idPays" name="idPays" class="form-control">
         </div>
-        <div class="col-sm-4 col-md-4 col-lg-4" >
-        <label >Nom du pays </label>
-        <input type="text"[(ngModel)]= "newPays.nomPays"
-        name="nomPays" class="form-control">
-        </div>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-        <label >Population du Pays</label>
-        <input type="number" [(ngModel)]= "newPays.population"
-        name="population" class="form-control">
-        </div>
-        <div class="col-sm-2 col-md-2 col-lg-2">
-            <label >Continent</label>
-            <input type="text" [(ngModel)]="newPays.continent"
-            name="continent" class="form-control">
-        </div>
-        <div class="col-sm-4 col-md-4 col-lg-4">
-        <label >Date de l'indépendance</label>
-        <input type="date" [(ngModel)]= "newPays.independenceDate"
-        name="independenceDate" class="form-control">
-    </div>
+        <span *ngIf="myForm.controls['idPays'].hasError('required')&&  myForm.controls['idPays'].touched"class="text-danger">
+            ID pays est obligatoire
+        </span>
 
-    
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Nom du pays </label>
+            <input type="text" formControlName="nomPays" [(ngModel)]="newPays.nomPays" name="nomPays"class="form-control">
+        </div>
+        <span *ngIf="myForm.controls['nomPays'].hasError('required')&&  myForm.controls['nomPays'].touched"class="text-danger">
+            le nom du pays est obligatoire
+        </span>
+
+
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Population du Pays</label>
+            <input type="number" formControlName="population" [(ngModel)]="newPays.population" name="population" class="form-control">
+        </div>
+        <span *ngIf="myForm.controls['population'].hasError('required')&&  myForm.controls['population'].touched"class="text-danger">
+            population est obligatoire
+        </span>
+
+
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Continent</label>
+            <input type="text" formControlName="continent"  [(ngModel)]="newPays.continent" name="continent" class="form-control">
+        </div>
+        <span *ngIf="myForm.controls['continent'].hasError('required')&&  myForm.controls['continent'].touched"class="text-danger">
+            continent est obligatoire
+        </span>
+
+
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Date de l'indépendance</label>
+            <input type="date" formControlName="independenceDate" [(ngModel)]="newPays.independenceDate"name="independenceDate" class="form-control">
+        </div>
+        <span
+            *ngIf="myForm.controls['independenceDate'].hasError('required')&&  myForm.controls['independenceDate'].touched"class="text-danger">
+            le date d'independance est obligatoire
+        </span>
+
+
         <div class="col-sm-4 col-md-4 col-lg-4">
             <label>Classification</label>
-            <select class="form-control form-control-lg" id="idClass" name="idClass"
-            [(ngModel)]="newIdClass">
-             <option *ngFor="let clas of classifications" [value]="clas.idClass" >
-             {{clas.nomClass}}
-            </option>
+            <select class="form-control form-control-lg" id="idClass" name="idClass" formControlName="classifications"[(ngModel)]="newIdClass">
+                <option *ngFor="let clas of classifications" [value]="clas.idClass"> {{clas.nomClass}}</option>
             </select>
         </div>
-        <form [formGroup]="myForm" (ngSubmit)="addPays()">
+        <span
+            *ngIf="myForm.controls['classifications'].hasError('required')&&  myForm.controls['classifications'].touched"class="text-danger">
+            classifications est obligatoire
+        </span>
+
         <div class="form-group">
             <label for="email">Email:</label>
             <input type="text" name="email" class="form-control" formControlName="email">
-            <span *ngIf="myForm.controls['email'].hasError('required')&&  myForm.controls['email'].touched" class="text-danger">
+            <span *ngIf="myForm.controls['email'].hasError('required')&&  myForm.controls['email'].touched"class="text-danger">
                 email est obligatoire
             </span>
-            <span *ngIf="myForm.controls['email'].hasError('email')&&  myForm.controls['email'].touched" class="text-danger">
+            <span *ngIf="myForm.controls['email'].hasError('email')&&  myForm.controls['email'].touched"class="text-danger">
                 email non valide
             </span>
-            <span *ngIf="myForm.controls['email'].hasError('minlength')&&  myForm.controls['email'].touched" class="text-danger">
+            <span *ngIf="myForm.controls['email'].hasError('minlength')&&  myForm.controls['email'].touched"class="text-danger">
                 email doit etre au mois 10 caractéres
             </span>
-          </div>
-        <div class="mt-2">
-        <button type="submit" (click)="addPays()"class="btn btn-success">Ajouter</button>
-        </div></form>
-        </form>
         </div>
+        <div class="mt-2">
+
+            <button type="submit" [disabled]="myForm.invalid" (click)="addPays()" class="btn btn-success">Ajouter</button>
+        </div>
+    </form>
+</div>

@@ -11,6 +11,8 @@ import { RechercheParClassificationComponent } from './recherche-par-classificat
 import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
 import { SearchFilterPipe } from './search-filter.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { ForbiddenComponent } from './forbidden/forbidden.component';
 
 
 
@@ -23,6 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     RechercheParClassificationComponent,
     RechercheParNomComponent,
     SearchFilterPipe,
+    LoginComponent,
+    ForbiddenComponent,
 
   ],
   imports: [

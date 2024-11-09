@@ -35,7 +35,13 @@ export class AddPaysComponent implements OnInit {
   ngOnInit() {
     this.classifications=this.paysService.listeClassification();
     this.myForm=this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email,Validators.minLength(5)]],
+      idPays:['', [Validators.required]],
+      nomPays:['', [Validators.required]],
+      population:['', [Validators.required]],
+      continent:['', [Validators.required]],
+      independenceDate:['', [Validators.required]],
+      classifications:['', [Validators.required]],
   
     })
     
