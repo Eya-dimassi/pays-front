@@ -33,17 +33,12 @@ this.myForm=this.formBuilder.group({
   classifications:['', [Validators.required]],
 
 })
-
-
-
-
-
 }
 updatePays()
 {
   if (this.myForm.valid) {
     this.currentPays.email = this.myForm.controls['email'].value;
-  this.currentPays.classification=this.paysService.consulterClassification(this.updateClassId);
+    this.currentPays.classification=this.paysService.consulterClassification(this.updateClassId);
 
   this.paysService.updatePays(this.currentPays);
   this.router.navigate(['pays']);

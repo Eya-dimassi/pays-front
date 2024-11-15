@@ -32,6 +32,13 @@ export class PaysService {
    ajouterPays(p:Pays){
     this.pays.push(p);
    }
+   
+   ajouterClassification(clas: Classification): Classification {
+    const id = this.classifications.length +1
+    clas.idClass=id;
+    this.classifications.push({...clas});
+    return clas;
+  }
    supprimerPays(pays:Pays){
     const index =this.pays.indexOf(pays,0);
     if(index>-1){
@@ -65,9 +72,24 @@ this.ajouterPays(p);
 this.trierPays();
 
 }
-listeClassification():Classification[] {
-  return this.classifications;
+
+/*updateClassification(updatedClass: Classification){
+  const index = this.classifications.findIndex(clas => clas.idClass === updatedClass.idClass);
+    if (index > -1) {
+      this.classifications[index] = updatedClass;
+    }
+}*/
+updateClassification(updatedClass: Classification): void {
+  const index = this.classifications.findIndex(c => c.idClass === updatedClass.idClass);
+  if (index !== -1) {
+    this.classifications[index] = {...updatedClass};
+  } else {
+    this.classifications.push({...updatedClass});
   }
+}
+listeClassification():Classification[]{
+  return (this.classifications);
+}
 consulterClassification(id:number): Classification{
     return this.classifications.find(clas => clas.idClass == id)!;
     }

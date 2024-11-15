@@ -8,6 +8,7 @@ import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { PaysGuard } from './pays.guard';
+import { ListeClassificationComponent } from './liste-classification/liste-classification.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,7 @@ const routes: Routes = [
   {path : "rechercheParNom", component : RechercheParNomComponent},
   {path: 'login', component: LoginComponent},
   {path: 'app-forbidden', component: ForbiddenComponent},
-
+  {path:"listeClassification",component:ListeClassificationComponent},
 
 ];
 

@@ -13,6 +13,8 @@ import { SearchFilterPipe } from './search-filter.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { ListeClassificationComponent } from './liste-classification/liste-classification.component';
+import { UpdateClassificationComponent } from './update-classification/update-classification.component';
 
 
 
@@ -27,6 +29,8 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
     SearchFilterPipe,
     LoginComponent,
     ForbiddenComponent,
+    ListeClassificationComponent,
+    UpdateClassificationComponent,
 
   ],
   imports: [
