@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { ListeClassificationComponent } from './liste-classification/liste-classification.component';
 import { UpdateClassificationComponent } from './update-classification/update-classification.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -38,6 +39,7 @@ import { UpdateClassificationComponent } from './update-classification/update-cl
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [
     provideClientHydration()

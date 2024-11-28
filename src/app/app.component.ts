@@ -11,6 +11,10 @@ export class AppComponent implements OnInit {
   title = 'Pays';
   constructor (public authService: AuthService,
     private router: Router) {}
+    onLogout()
+    {
+      this.authService.logout();
+    }
   ngOnInit () {
     let isloggedin: string;
     let loggedUser:string;

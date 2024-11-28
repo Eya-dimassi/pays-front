@@ -11,18 +11,30 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class UpdatePaysComponent implements OnInit{
   currentPays = new Pays();
-  classifications!:Classification[];
+  classifications:Classification[]=[];
   updateClassId!:number;
   myForm!:FormGroup;
 constructor(private activatedRoute: ActivatedRoute,
             private paysService: PaysService,
             private router:Router,
             private formBuilder:FormBuilder) { }
-ngOnInit():void {
-  this.classifications=this.paysService.listeClassification();
 
-this.currentPays = this.paysService.consulterPays(this.activatedRoute.snapshot. params['id']);
-this.updateClassId=this.currentPays.classification.idClass;
+
+ngOnInit():void {
+  this.paysService.listeClassification().
+  subscribe(clas => {this.classifications = clas._embedded.classifications;
+                     console.log(clas);
+                      });
+
+    
+  this.paysService.consulterPays(this.activatedRoute.snapshot.params['id']).
+ subscribe( p =>{ this.currentPays = p; 
+  this.updateClassId=this.currentPays.classification.idClass;
+ } ) ;
+  
+
+  
+
 this.myForm=this.formBuilder.group({
   email: ['', [Validators.required, Validators.email,Validators.minLength(5)]],
   idPays:['', [Validators.required]],
@@ -30,7 +42,7 @@ this.myForm=this.formBuilder.group({
   population:['', [Validators.required]],
   continent:['', [Validators.required]],
   independenceDate:['', [Validators.required]],
-  classifications:['', [Validators.required]],
+  idClass:['', [Validators.required]],
 
 })
 }
@@ -38,11 +50,10 @@ updatePays()
 {
   if (this.myForm.valid) {
     this.currentPays.email = this.myForm.controls['email'].value;
-    this.currentPays.classification=this.paysService.consulterClassification(this.updateClassId);
-
-  this.paysService.updatePays(this.currentPays);
-  this.router.navigate(['pays']);
-  }
+    this.currentPays.classification=this.classifications.find(c=>c.idClass==this.updateClassId)!;
+    this.paysService.updatePays(this.currentPays).subscribe(p => {
+    this.router.navigate(['pays']); }
+    );}
 
 }
 

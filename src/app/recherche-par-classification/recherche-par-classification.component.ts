@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Pays } from '../model/pays.model';
 import { PaysService } from '../services/pays.service';
 import { Classification } from '../model/classification.model';
@@ -8,26 +8,32 @@ import { Classification } from '../model/classification.model';
   templateUrl: './recherche-par-classification.component.html',
   styles: ``
 })
-export class RechercheParClassificationComponent {
-  pays:Pays[]=[] ;
-  classifications:Classification[]=[];
+export class RechercheParClassificationComponent implements OnInit {
+  pays!:Pays[] ;
+  classifications!:Classification[];
   IdClass!:number;
+
   constructor(private paysService:PaysService){}
-  ngOnInit(){
-    this.classifications=this.paysService.listeClassification();
-    this.pays=[];
+
+  ngOnInit(): void{
+    this.paysService.listeClassification(). subscribe(clas => {this.classifications = clas._embedded.classifications;
+      console.log(clas);
+    });
+
+  
   }
   onChange(){
-    this.pays=
-    this.paysService.rechercherParClassification(this.IdClass);
+   
+    this.paysService.rechercherParClassification(this.IdClass).
+    subscribe(p =>{this.pays=p});
 
   }
-  supprimerPays(p:Pays){
+  /*supprimerPays(p:Pays){
     let conf=confirm("Etes-vous sur ?");
     if(conf)
       this.paysService.supprimerPays(p);
     this.pays=this.paysService.rechercherParClassification(this.IdClass);
-  }
+  }*/
 
 
 

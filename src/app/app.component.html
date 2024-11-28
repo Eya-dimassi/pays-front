@@ -19,7 +19,7 @@
                   <a class="dropdown-item" href="#">Lister</a>
                   <a class="dropdown-item" routerLink="/rechercheParClassification" >Recherche Par Classification</a>
                   <a class="dropdown-item" routerLink="/rechercheParNom" >Recherche Par Nom</a>
-                  <a class="dropdown-item" routerLink="/listeClassification" >Gestion des Classification</a>
+                  <a class="dropdown-item" routerLink="/listeClassification" *ngIf="authService.isAdmin()" >Gestion des Classification</a>
 
 
               </div>
@@ -32,8 +32,8 @@
          Connexion 
          </a> 
          <div class="dropdown-menu"> 
-           <a *ngIf="!authService.isloggedIn"  class="dropdown-item" href="#">login</a> 
-           <a *ngIf="authService.isloggedIn" class="dropdown-item" href="#">logout</a> 
+           <a *ngIf="!authService.isloggedIn"  class="dropdown-item" routerLink = "login">login</a> 
+           <a *ngIf="authService.isloggedIn" class="dropdown-item" (click) = "onLogout()">logout</a> 
              <a class="dropdown-item" href="#">Profile</a> 
          </div> 
         </li> 

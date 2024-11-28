@@ -41,17 +41,26 @@
     
     <div class="col-sm-4 col-md-4 col-lg-4">
         <label >Date d'indépendance</label>
-        <input type="date" formControlName="independenceDate" [ngModel]="currentPays.independenceDate | date: 'yyyy-MM-dd'" (ngModelChange)=" currentPays.independenceDate= $event" name="independenceDate" class="form-control">
-    </div>
-
-    <div class="col-sm-4 col-md-4 col-lg-4">
-    <select class="form-control form-control-lg" id="idClass" formControlName="idClass" name="idClass" [(ngModel)]="updateClassId">
-    <option *ngFor="let clas of classifications" [value]="clas.idClass" >{{clas.nomClass}}</option>
-    </select>
+        <input type="date" 
+        formControlName="independenceDate" 
+        [ngModel]="currentPays.independenceDate | date: 'yyyy-MM-dd'" 
+        (ngModelChange)=" currentPays.independenceDate= $event" 
+        name="independenceDate" class="form-control">
     </div>
     <span *ngIf="myForm.controls['independenceDate'].hasError('required')&&  myForm.controls['independenceDate'].touched"class="text-danger">
-    le date d'independance est obligatoire
+        le date d'independance est obligatoire
     </span>
+
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <label >Classification</label>
+        <select class="form-control form-control-lg" id="idClass" formControlName="idClass" name="idClass" [(ngModel)]="updateClassId">
+       <option *ngFor="let clas of classifications" [value]="clas.idClass" >{{clas.nomClass}}</option>
+      </select>
+    </div>
+    <span *ngIf="myForm.controls['idClass'].hasError('required')&&  myForm.controls['idClass'].touched"class="text-danger">
+        la classification est obligatoire
+    </span>
+    
 
 
     <div class="form-group">

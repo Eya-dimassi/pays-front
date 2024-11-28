@@ -1,7 +1,7 @@
 import { Classification } from "./classification.model";
 
 export class Pays{
-    idPays!:Number;
+    idPays!:number;
     nomPays!:string;
     population!:number;
     continent!:string;

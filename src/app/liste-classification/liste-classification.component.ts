@@ -10,6 +10,7 @@ import { PaysService } from '../services/pays.service';
 export class ListeClassificationComponent implements OnInit {
  classifications! : Classification[];
  ajout:boolean=true;
+ 
 
  updatedClass:Classification = {"idClass":0,"nomClass":""};
 
@@ -20,10 +21,33 @@ export class ListeClassificationComponent implements OnInit {
     console.log(this.classifications);*/
     this.chargerClassification();
    }
-  classUpdated(clas: Classification): void {
-    console.log("Class updated event", clas);
-    this.paysService.ajouterClassification(clas); // Ensure this method correctly handles in-memory data
+
+
+
+
+   chargerClassification(): void {
+    this.paysService.listeClassification().
+    subscribe(clas => {this.classifications = clas._embedded.classifications;
+      console.log(clas);
+      });
+   }
+
+
+
+  classUpdated(clas: Classification) {
+
+    if (this.ajout) {
+
+
+    console.log("classification reçue du composant updateClass ",clas);
+    this.paysService.ajouterClassification(clas).subscribe( ()=> this.chargerClassification());
+    }
+   /* console.log("Class updated event", clas);
+    this.paysService.ajouterClassification(clas);
+    const index=this.classifications.findIndex(c => c.idClass === clas.idClass)
+    
     this.chargerClassification();
+    this.ajout = true;*/
     /*console.log("Clas updated event", clas);
     this.paysService.updateClassification(clas);
      
@@ -31,10 +55,7 @@ export class ListeClassificationComponent implements OnInit {
     this.updatedClass = { idClass: 0, nomClass: '' }; */
                
   }
-  chargerClassification(): void {
-    this.classifications = this.paysService.listeClassification();  // Directly get categories from in-memory data
-    console.log(this.classifications);
-  }
+  
   updateClass(clas: Classification){
     this.updatedClass=clas;
     this.ajout=false; 

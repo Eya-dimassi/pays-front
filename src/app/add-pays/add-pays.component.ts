@@ -11,40 +11,65 @@ import { FormBuilder, Validators,FormGroup } from '@angular/forms';
   styleUrl: './add-pays.component.css'
 })
 export class AddPaysComponent implements OnInit {
-  
   newPays = new Pays();
   classifications!:Classification[];
   newIdClass!:number;
   newClassifiction!:Classification;
   myForm!:FormGroup;
+
+
   constructor(private paysService:PaysService,
-               private router:Router,
-               private formBuilder:FormBuilder){}
-  addPays(){
-    if (this.myForm.valid) {
-    this.newPays.email = this.myForm.controls['email'].value;
-    this.newClassifiction=this.paysService.consulterClassification(this.newIdClass);
-    this.newPays.classification=this.newClassifiction;
-    this.paysService.ajouterPays(this.newPays);
-    this.router.navigate(['pays']);
-    }
+    private router:Router,
+    private formBuilder:FormBuilder){}
+
+
+  ngOnInit() : void  {
+    this.paysService.listeClassification().subscribe({
+      next:
+      (clas )=>{ this.classifications = clas._embedded.classifications;},
+      error:(err)=>{
+        console.error('Erreur ',err);},
+     // console.log(clas);
+      });
     
-  }
-
-
-  ngOnInit() {
-    this.classifications=this.paysService.listeClassification();
     this.myForm=this.formBuilder.group({
       email: ['', [Validators.required, Validators.email,Validators.minLength(5)]],
-      idPays:['', [Validators.required]],
       nomPays:['', [Validators.required]],
       population:['', [Validators.required]],
       continent:['', [Validators.required]],
       independenceDate:['', [Validators.required]],
-      classifications:['', [Validators.required]],
+      idClass:['', [Validators.required]],
   
-    })
+    });
     
   }
+  
+  /*addPays() {
+    if (this.myForm.valid) {
+      console.log(this.myForm.value);  // Check the values
+      this.newPays.classification = this.classifications.find(
+        (clas) => clas.idClass == this.newIdClass
+      )!;
+      this.newPays.email = this.myForm.controls['email'].value;
+      this.paysService.ajouterPays(this.newPays).subscribe((p) => {
+        console.log(p);
+        this.router.navigate(['pays']);
+      });
+    }
+  }
+  */
+  
+  addPays(){
+    if (this.myForm.valid) {
+      this.newPays.email = this.myForm.controls['email'].value;
+      this.newPays.classification = this.classifications.find(clas => clas.idClass == this.newIdClass)!;}
+      this.paysService.ajouterPays(this.newPays).subscribe(p => {
+        console.log(p);
+        this.router.navigate(['pays']);
+    });
+    
+  
+}
+
 
 }
